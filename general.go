@@ -15,7 +15,6 @@ func SetEnvVarForTest(t *testing.T, key, value string) {
 	if err != nil {
 		t.Fatal(err)
 	}
-
 }
 
 func SetCurrentEnvForTest(t *testing.T) {
