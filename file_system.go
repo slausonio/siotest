@@ -6,11 +6,9 @@ import (
 	"testing"
 )
 
-// CreateFile creates a new file with the specified file path.
-// It also accepts a testing.T pointer for the purpose of testing,
-// and uses the t.Helper() method to mark the function as a test helper.
-// The function returns a pointer to the created file and logs a fatal error
-// if any error occurs during file creation.
+// CreateFile test helper that creates a new file with the specified file path.
+//
+// If an error occurs, it will fail the test.
 func CreateFile(t *testing.T, filePath string) *os.File {
 	t.Helper()
 
@@ -39,9 +37,9 @@ func CreateFile(t *testing.T, filePath string) *os.File {
 	return file
 }
 
-// RemoveFileAndDirs removes a file and its parent directories.
-// It also accepts a testing.T pointer for the purpose of testing,
-// and uses the t.Helper() method to mark the function as a test helper.
+// RemoveFileAndDirs test helper that removes a file and its parent directories.
+//
+// If an error occurs, it will fail the test.
 func RemoveFileAndDirs(t *testing.T, filePath string) {
 	t.Helper()
 
@@ -51,6 +49,7 @@ func RemoveFileAndDirs(t *testing.T, filePath string) {
 	}
 
 	dir := filepath.Dir(filePath)
+
 	err = os.RemoveAll(dir)
 	if err != nil {
 		t.Fatal(err)

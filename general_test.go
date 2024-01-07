@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"github.com/joho/godotenv"
-	"github.com/slausonio/go-webserver/environment"
 )
 
 func TestSetEnvVarForTest(t *testing.T) {
@@ -35,7 +34,7 @@ func TestSetCurrentEnvForTest(t *testing.T) {
 	t.Helper()
 	SetCurrentEnvForTest(t)
 	want := "test"
-	got := os.Getenv(environment.CurrentEnv)
+	got := os.Getenv(CurrentEnvKey)
 	if got != want {
 		t.Errorf("SetCurrentEnvForTest() = %v, want %v", got, want)
 	}
@@ -46,11 +45,11 @@ func TestWriteEnvToFile(t *testing.T) {
 	tests := []struct {
 		desc     string
 		filename string
-		env      environment.Environment
+		env      map[string]string
 	}{
-		{"Regular file", "file.env", environment.Environment{"VAR_NAME": "VAR_VALUE"}},
-		{"Empty file", "file-empty.env", environment.Environment{}},
-		{"Numerical values file", "file-num.env", environment.Environment{"NUM_NAME": "123"}},
+		{"Regular file", "file.env", map[string]string{"VAR_NAME": "VAR_VALUE"}},
+		{"Empty file", "file-empty.env", map[string]string{}},
+		{"Numerical values file", "file-num.env", map[string]string{"NUM_NAME": "123"}},
 	}
 
 	for _, tt := range tests {
@@ -66,7 +65,7 @@ func TestWriteEnvToFile(t *testing.T) {
 					t.Errorf("WriteEnvToFile() for key %v, got = %v, want %v", key, got, want)
 				}
 			}
-			// Cleaning up test file
+
 			os.Remove(tt.filename)
 		})
 	}
