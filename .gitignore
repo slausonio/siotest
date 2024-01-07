@@ -19,3 +19,8 @@
 
 # Go workspace file
 go.work
+/.idea/.gitignore
+/.idea/git_toolbox_prj.xml
+/.idea/modules.xml
+/.idea/siotest.iml
+/.idea/vcs.xml
