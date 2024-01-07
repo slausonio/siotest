@@ -32,7 +32,7 @@ func SetCurrentEnvForTest(t *testing.T) {
 }
 
 // WriteEnvToFile writes the environment variables to a file in the specified filename param.
-func WriteEnvToFile(t *testing.T, filename string, env environment.Environment) {
+func WriteEnvToFile(t *testing.T, filename string, env map[string]string) {
 	t.Helper()
 
 	err := godotenv.Write(env, filename)
